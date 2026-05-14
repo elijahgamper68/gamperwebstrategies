@@ -1530,6 +1530,98 @@
   .step-circle { transition: background 0.25s, box-shadow 0.3s; }
   .step-active .step-circle { background: var(--color-accent) !important; box-shadow: 0 0 0 4px rgba(46,139,192,0.22); }
   .process-aside { transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+
+  /* ════════════════════════════════════════
+     MOBILE OPTIMIZATIONS
+  ════════════════════════════════════════ */
+
+  /* Hamburger: white on dark transparent nav, dark on scrolled bg */
+  .nav-hamburger span { background: #fff; }
+  nav.navbar--scrolled .nav-hamburger span { background: var(--color-primary); }
+
+  @media (max-width: 768px) {
+    /* Smaller nav logo image */
+    #navLogoImg { height: 40px !important; width: 40px !important; }
+
+    /* Prevent horizontal overflow from offset box-shadows */
+    #about, #process, #features, #portfolio, #testimonials { overflow-x: clip; }
+
+    /* Scrub stat: allow wrapping so "3 – 5 days" doesn't overflow */
+    .scrub-stat { white-space: normal; text-align: center; font-size: clamp(2.8rem, 12vw, 8rem); }
+    .scrub-content { padding: 24px; }
+
+    /* Reduce offset shadows so they don't create horizontal scroll */
+    .stat-cell { box-shadow: 5px 5px 0px var(--color-primary) !important; }
+    .bento-cell { box-shadow: 5px 5px 0px var(--color-accent) !important; }
+    #process .process-step { box-shadow: 5px 5px 0px var(--color-primary) !important; }
+    .stat-cell:hover { box-shadow: 2px 2px 0px var(--color-primary) !important; transform: translate(3px, 3px) !important; }
+    .bento-cell.visible:hover { box-shadow: 2px 2px 0px var(--color-accent) !important; }
+    #process .process-step.proc-revealed:hover { box-shadow: 2px 2px 0px var(--color-primary) !important; transform: translate(3px, 3px) !important; }
+
+    /* Testimonials: shorter scrolling area on mobile */
+    .t-cols-wrap { height: 440px; }
+
+    /* Hero trust: tighter */
+    .hero-trust { gap: 14px; margin-top: 28px; }
+  }
+
+  @media (max-width: 480px) {
+    /* Nav: just show the logo icon, hide the text */
+    .nav-logo-text { display: none; }
+    #navLogoImg { height: 36px !important; width: 36px !important; }
+
+    /* Hero */
+    #hero { padding: calc(var(--header-height) + 28px) var(--gutter) 52px; }
+    .hero-headline { font-size: clamp(2rem, 11vw, 3.2rem); }
+    .hero-actions { flex-direction: column; align-items: stretch; }
+    .btn-glass, .btn-ghost { text-align: center; justify-content: center; }
+    .hero-trust { gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+    .trust-item { font-size: 0.7rem; }
+    .gooey-container { margin-bottom: 28px; }
+
+    /* Scrub */
+    .scrub-stat { font-size: clamp(2rem, 10vw, 4.5rem); }
+    .scrub-stat-sub { font-size: 0.88rem; }
+
+    /* Bento: full single column */
+    .bento-grid { grid-template-columns: 1fr; }
+    .bc1, .bc2, .bc3, .bc4, .bc5, .bc6 { grid-column: span 1 !important; }
+
+    /* Service cards: slightly less padding */
+    .service-card { padding: 28px 20px; }
+
+    /* FAQ flip cards: single column, slightly shorter */
+    .faq-cards { grid-template-columns: 1fr; }
+    .faq-card { height: 130px; }
+
+    /* Testimonials: shorter */
+    .t-cols-wrap { height: 360px; }
+
+    /* Contact: allow long email to wrap */
+    .contact-detail-value { word-break: break-all; font-size: 0.82rem; }
+
+    /* About CTA link: tighter padding */
+    #about .about-sticky > a { padding: 18px 20px !important; gap: 12px !important; }
+
+    /* Process aside: less padding */
+    .process-aside { padding: 28px 20px; }
+
+    /* Contact form: slightly less padding */
+    .contact-form-wrap { padding: 24px 18px !important; }
+
+    /* Footer */
+    footer { padding: 56px var(--gutter) 32px; }
+    .footer-copy { font-size: 0.72rem; }
+
+    /* Sections */
+    .site-section { padding: 56px var(--gutter); }
+    #features { padding: 56px var(--gutter); }
+
+    /* Minimal shadows on xs to prevent any overflow */
+    .stat-cell { box-shadow: 3px 3px 0px var(--color-primary) !important; }
+    .bento-cell { box-shadow: 3px 3px 0px var(--color-accent) !important; }
+    #process .process-step { box-shadow: 3px 3px 0px var(--color-primary) !important; }
+  }
   </style>
 </head>
 <body>
@@ -1569,7 +1661,7 @@
   <div class="nav-inner">
     <a href="#" class="nav-logo">
       <img src="gamper_logo_final.png" alt="Gamper Web Strategies logo" id="navLogoImg" style="height:52px;width:52px;object-fit:contain;flex-shrink:0">
-      Gamper Web Strategies
+      <span class="nav-logo-text">Gamper Web Strategies</span>
     </a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
