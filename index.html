@@ -1657,6 +1657,39 @@
     .bento-cell { box-shadow: 3px 3px 0px var(--color-accent) !important; }
     #process .process-step { box-shadow: 3px 3px 0px var(--color-primary) !important; }
   }
+
+    /* ── SMS consent checkbox ── */
+    #smsConsent {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 16px; height: 16px;
+      min-width: 16px; min-height: 16px;
+      max-width: 16px; max-height: 16px;
+      border: 1.75px solid #aaa;
+      border-radius: 3px;
+      background: #fff;
+      cursor: pointer;
+      flex-shrink: 0;
+      flex-grow: 0;
+      align-self: flex-start;
+      margin-top: 3px;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+    }
+    #smsConsent:checked {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+    }
+    #smsConsent:checked::after {
+      content: '';
+      position: absolute;
+      left: 4px; top: 1px;
+      width: 5px; height: 9px;
+      border: 2px solid #fff;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+    }
   </style>
 </head>
 <body>
@@ -2187,6 +2220,10 @@
             </select>
           </div>
           <div class="form-group"><label for="fmsg">Tell us about your project</label><textarea id="fmsg" name="message" placeholder="What are you looking for? Any details help..."></textarea></div>
+          <div class="form-group" style="flex-direction:row;align-items:flex-start;gap:10px;margin-bottom:18px;">
+            <input type="checkbox" id="smsConsent" name="sms_consent" />
+            <label for="smsConsent" style="font-size:0.75rem;font-weight:400;color:var(--text-muted);line-height:1.6;cursor:pointer;">By checking this box, I consent to receive non-marketing text messages from Gamper Web Strategies about your website inquiry. Message frequency varies, message &amp; data rates may apply. Text HELP for assistance, reply STOP to opt out.</label>
+          </div>
           <button type="submit" class="form-submit" id="formSubmit">Send My Free Quote Request →</button>
         </form>
       </div>
